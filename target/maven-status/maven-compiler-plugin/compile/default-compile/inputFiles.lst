@@ -1,0 +1,17 @@
+/home/ubuntu/communication-service/src/main/java/ca/buildsystem/communication/repository/NotificationRepository.java
+/home/ubuntu/communication-service/src/main/java/ca/buildsystem/communication/service/NotificationMapper.java
+/home/ubuntu/communication-service/src/main/java/ca/buildsystem/communication/exception/CustomAccessDeniedHandler.java
+/home/ubuntu/communication-service/src/main/java/ca/buildsystem/communication/CommunicationServiceApplication.java
+/home/ubuntu/communication-service/src/main/java/ca/buildsystem/communication/model/NotificationType.java
+/home/ubuntu/communication-service/src/main/java/ca/buildsystem/communication/dto/NotificationRequestDTO.java
+/home/ubuntu/communication-service/src/main/java/ca/buildsystem/communication/dto/NotificationDTO.java
+/home/ubuntu/communication-service/src/main/java/ca/buildsystem/communication/model/Notification.java
+/home/ubuntu/communication-service/src/main/java/ca/buildsystem/communication/exception/CustomAuthenticationEntryPoint.java
+/home/ubuntu/communication-service/src/main/java/ca/buildsystem/communication/controller/NotificationController.java
+/home/ubuntu/communication-service/src/main/java/ca/buildsystem/communication/model/NotificationStatus.java
+/home/ubuntu/communication-service/src/main/java/ca/buildsystem/communication/service/NotificationServiceImpl.java
+/home/ubuntu/communication-service/src/main/java/ca/buildsystem/communication/service/NotificationService.java
+/home/ubuntu/communication-service/src/main/java/ca/buildsystem/communication/security/JwtAuthenticationFilter.java
+/home/ubuntu/communication-service/src/main/java/ca/buildsystem/communication/config/SecurityConfig.java
+/home/ubuntu/communication-service/src/main/java/ca/buildsystem/communication/exception/GlobalExceptionHandler.java
+/home/ubuntu/communication-service/src/main/java/ca/buildsystem/communication/exception/ResourceNotFoundException.java
