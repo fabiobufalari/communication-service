@@ -1,0 +1,196 @@
+# ============================
+# Communication Service - Application Configuration
+# Serviço de Comunicação - Configuração da Aplicação
+# ============================
+
+# =========================================
+# Server Configuration / Configuração do Servidor
+# =========================================
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: /api
+
+# =========================================
+# Spring Configuration / Configuração do Spring
+# =========================================
+spring:
+  application:
+    name: communication-service
+  
+  # =========================================
+  # Database Configuration (PostgreSQL)
+  # Configuração do Banco de Dados (PostgreSQL)
+  # =========================================
+  datasource:
+    url: ${DATASOURCE_URL:jdbc:postgresql://postgres:5432/buildingDB}
+    username: ${DATASOURCE_USERNAME_PROD:postgres}
+    password: ${DATASOURCE_PASSWORD_PROD:postgres}
+    driver-class-name: org.postgresql.Driver
+    
+  # =========================================
+  # JPA/Hibernate Configuration
+  # Configuração JPA/Hibernate
+  # =========================================
+  jpa:
+    hibernate:
+      ddl-auto: ${DDL_AUTO:update}
+    show-sql: ${SHOW_SQL:false}
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        
+  # =========================================
+  # Mail Configuration (JavaMailSender)
+  # Configuração de Email (JavaMailSender)
+  # =========================================
+  mail:
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:bufalari.fabio@gmail.com}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            trust: "*"
+    test-connection: false
+
+# =========================================
+# JWT Configuration / Configuração JWT
+# =========================================
+jwt:
+  secret: ${JWT_SECRET_KEY:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970!}
+  access-expiration: ${JWT_ACCESS_EXPIRATION:86400000}
+  refresh-expiration: ${JWT_REFRESH_EXPIRATION:604800000}
+
+# =========================================
+# External Services / Serviços Externos
+# =========================================
+services:
+  auth:
+    url: ${AUTH_SERVICE_URL:http://authentication:8080/api}
+  accounts-payable:
+    url: ${ACCOUNTS_PAYABLE:http://accounts-payable:8088/api}
+  accounts-receivable:
+    url: ${ACCOUNTS_RECEIVABLE:http://accounts-receivable:8089/api}
+
+# =========================================
+# Communication Configuration
+# Configuração de Comunicação
+# =========================================
+communication:
+  email:
+    enabled: true
+    templates-path: ${EMAIL_TEMPLATES_PATH:classpath:/templates/email/}
+    default-sender: ${DEFAULT_EMAIL_SENDER:bufalari.fabio@gmail.com}
+  sms:
+    enabled: ${SMS_ENABLED:false}
+    provider: ${SMS_PROVIDER:}
+    api-key: ${SMS_API_KEY:}
+  notifications:
+    enabled: true
+    real-time: true
+    batch-size: ${NOTIFICATION_BATCH_SIZE:100}
+
+# =========================================
+# Actuator Configuration / Configuração do Actuator
+# =========================================
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+  health:
+    db:
+      enabled: true
+
+# =========================================
+# Swagger/OpenAPI Configuration
+# Configuração Swagger/OpenAPI
+# =========================================
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+
+# =========================================
+# Logging Configuration / Configuração de Log
+# =========================================
+logging:
+  level:
+    com.bufalari.communication_service: ${LOG_LEVEL:INFO}
+    org.springframework.security: ${SECURITY_LOG_LEVEL:WARN}
+    org.hibernate.SQL: ${SQL_LOG_LEVEL:WARN}
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# =========================================
+# Canadian Compliance Configuration
+# Configuração de Conformidade Canadense
+# =========================================
+compliance:
+  sox:
+    enabled: true
+    audit-retention-days: 2555  # 7 years / 7 anos
+  pipeda:
+    enabled: true
+    data-retention-days: 2555
+  aoda:
+    enabled: true
+    accessibility-features: true
+  fintrac:
+    enabled: true
+    reporting-threshold: 10000
+
+# =========================================
+# Audit Configuration / Configuração de Auditoria
+# =========================================
+audit:
+  enabled: true
+  retention-days: 2555  # 7 years for Canadian compliance / 7 anos para conformidade canadense
+  log-all-requests: true
+  log-sensitive-data: false
+
+# =========================================
+# Frontend Configuration / Configuração do Frontend
+# =========================================
+frontend:
+  url: ${FRONTEND_URL:http://buildingteste.ddns.net:8081}
+  cors:
+    allowed-origins: 
+      - ${FRONTEND_URL:http://buildingteste.ddns.net:8081}
+      - http://localhost:3000
+      - http://localhost:8081
+    allowed-methods: GET,POST,PUT,DELETE,OPTIONS
+    allowed-headers: "*"
+    allow-credentials: true
+
+# =========================================
+# Internationalization / Internacionalização
+# =========================================
+app:
+  supported-languages:
+    - en-CA  # English (Canadian) / Inglês (Canadense)
+    - pt-BR  # Portuguese (Brazilian) / Português (Brasileiro)
+    - en-US  # English (US) / Inglês (EUA)
+    - fr-CA  # French (Canadian) / Francês (Canadense)
+  default-language: en-CA
+  currency:
+    default: CAD  # Canadian Dollar / Dólar Canadense
+    supported:
+      - CAD
+      - USD
+      - BRL
+
